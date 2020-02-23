@@ -5,6 +5,8 @@
 
 ;;; SCHEME -- A Scheme interpreter evaluating a sort, written by Marc Feeley.
 
+(define (main repeat input)
+
 ; - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 (define (scheme-eval expr)
@@ -1041,12 +1043,12 @@
 
 ; - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-(define (one-iter input)
-  (scheme-eval input))
-
-(define (main repeat input)
   (##exec-stats
    (lambda ()
+
+     (define (one-iter input)
+       (scheme-eval input))
+
      (let loop ((n repeat) (result #f))
        (if (> n 0)
            (loop (- n 1) (one-iter input))
